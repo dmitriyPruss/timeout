@@ -17,6 +17,7 @@
  */
 function printNumbers1(from, to, interval) {
 
+    validateData();
     let counter = 1;
 
     for(let i = from; i <= to; i++) {
@@ -26,8 +27,7 @@ function printNumbers1(from, to, interval) {
     };
 };
 
-// printNumbers1(0, 5, 1000);
-
+printNumbers1(-10, -5, 100);
 
 // 2
 /**
@@ -37,16 +37,17 @@ function printNumbers1(from, to, interval) {
  * @param {number} interval - only integer number 
  */
 function printNumbers2(from, to, interval) {
+    validateData();
     
     let item = from;
 
     /**
      * 
      * @param {function} timerName 
+     *
      */
     const show = timerName => {
-
-        console.log(item);
+        console.log('item :>> ', item);
       
         if (item === to) {
             clearInterval(timerName);
@@ -58,7 +59,7 @@ function printNumbers2(from, to, interval) {
     const timerId = setInterval( () => show(timerId), interval);
 };
 
-// printNumbers2(0, 5, 300);
+printNumbers2(0, 5, 500);
 
 
 // 3
@@ -69,6 +70,7 @@ function printNumbers2(from, to, interval) {
  * @param {number} interval - only integer number 
  */
 function printNumbers3(from, to, interval) {
+    validateData();
   
     const show = () => {
         let item = from;
@@ -87,3 +89,19 @@ function printNumbers3(from, to, interval) {
 };
 
 // printNumbers3(1, 3, 2000);
+
+
+function validateData(from = 0, to = 0, interval = 0) {
+    if (typeof from !== 'number' || typeof to !== 'number' || typeof interval !== 'number') {
+        throw new TypeError('Parameter is not a number!');
+    };
+    if (Number.isNaN(from) || !Number.isSafeInteger(from) || from > to) {
+        throw new RangeError('False range for from!');
+    };
+    if (Number.isNaN(to) || !Number.isSafeInteger(to) || from < to) {
+        throw new RangeError('False range for to!');
+    };
+    if ( Number.isNaN(interval) || !Number.isSafeInteger(interval) || interval < 0) {
+        throw new RangeError('False range for interval!');
+    };
+};
