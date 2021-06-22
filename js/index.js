@@ -91,6 +91,12 @@ function printNumbers3(from, to, interval) {
 // printNumbers3(1, 3, 2000);
 
 
+/**
+ * 
+ * @param {number} from 
+ * @param {number} to 
+ * @param {number} interval 
+ */
 function validateData(from = 0, to = 0, interval = 0) {
     if (typeof from !== 'number' || typeof to !== 'number' || typeof interval !== 'number') {
         throw new TypeError('Parameter is not a number!');
