@@ -9,6 +9,9 @@
 
 
 // 1
+
+// printNumbers1(-10, -5, 700);
+
 /**
  * 
  * @param {number} from - only integer number 
@@ -17,19 +20,22 @@
  */
 function printNumbers1(from, to, interval) {
 
-    validateData();
+    validateData(from, to, interval);
+
     let counter = 1;
 
     for(let i = from; i <= to; i++) {
         setTimeout( () => {
-            console.log('i :>> ', i);
+            console.log('item :>> ', i);
         }, interval * counter++);
     };
 };
 
-printNumbers1(-10, -5, 100);
 
 // 2
+
+// printNumbers2(0, 5, 500);
+
 /**
  * 
  * @param {number} from - only integer number 
@@ -37,7 +43,8 @@ printNumbers1(-10, -5, 100);
  * @param {number} interval - only integer number 
  */
 function printNumbers2(from, to, interval) {
-    validateData();
+
+    validateData(from, to, interval);
     
     let item = from;
 
@@ -56,13 +63,14 @@ function printNumbers2(from, to, interval) {
         item++;
     };
 
-    const timerId = setInterval( () => show(timerId), interval);
+    const timerId = setInterval( () => show(timerId), interval );
 };
-
-printNumbers2(0, 5, 500);
 
 
 // 3
+
+// printNumbers3(1, 7, 200);
+
 /**
  * 
  * @param {number} from - only integer number 
@@ -70,7 +78,8 @@ printNumbers2(0, 5, 500);
  * @param {number} interval - only integer number 
  */
 function printNumbers3(from, to, interval) {
-    validateData();
+
+    validateData(from, to, interval);
   
     const show = () => {
         let item = from;
@@ -85,10 +94,8 @@ function printNumbers3(from, to, interval) {
         };
     };
 
-    setTimeout( () => show()(), interval);
+    setTimeout( () => show()(), interval );
 };
-
-// printNumbers3(1, 3, 2000);
 
 
 /**
@@ -98,16 +105,16 @@ function printNumbers3(from, to, interval) {
  * @param {number} interval 
  */
 function validateData(from = 0, to = 0, interval = 0) {
-    if (typeof from !== 'number' || typeof to !== 'number' || typeof interval !== 'number') {
-        throw new TypeError('Parameter is not a number!');
+    if ( typeof from !== 'number' || typeof to !== 'number' || typeof interval !== 'number' ) {
+        throw new TypeError('One of parameters is not a number!');
     };
-    if (Number.isNaN(from) || !Number.isSafeInteger(from) || from > to) {
+    if ( Number.isNaN(from) || !Number.isSafeInteger(from) || from > to ) {
         throw new RangeError('False range for from!');
     };
-    if (Number.isNaN(to) || !Number.isSafeInteger(to) || from < to) {
+    if ( Number.isNaN(to) || !Number.isSafeInteger(to) || to < from ) {
         throw new RangeError('False range for to!');
     };
-    if ( Number.isNaN(interval) || !Number.isSafeInteger(interval) || interval < 0) {
+    if ( Number.isNaN(interval) || !Number.isSafeInteger(interval) || interval < 0 ) {
         throw new RangeError('False range for interval!');
     };
 };
