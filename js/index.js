@@ -108,13 +108,13 @@ function validateData(from = 0, to = 0, interval = 0) {
     if ( typeof from !== 'number' || typeof to !== 'number' || typeof interval !== 'number' ) {
         throw new TypeError('One of parameters is not a number!');
     };
-    if ( Number.isNaN(from) || !Number.isSafeInteger(from) || from > to ) {
+    if ( !Number.isSafeInteger(from) || from > to ) {
         throw new RangeError('False range for from!');
     };
-    if ( Number.isNaN(to) || !Number.isSafeInteger(to) || to < from ) {
+    if ( !Number.isSafeInteger(to) || to < from ) {
         throw new RangeError('False range for to!');
     };
-    if ( Number.isNaN(interval) || !Number.isSafeInteger(interval) || interval < 0 ) {
+    if ( !Number.isSafeInteger(interval) || interval < 0 ) {
         throw new RangeError('False range for interval!');
     };
 };
