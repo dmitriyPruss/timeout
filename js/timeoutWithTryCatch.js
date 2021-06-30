@@ -10,7 +10,7 @@
 
 // 1
 
-// printNumbers1(-10, -5, 700);
+// printNumbers1(-1, 5, -300);
 
 /**
  * 
@@ -20,14 +20,23 @@
  */
 function printNumbers1(from, to, interval) {
 
-    validateData(from, to, interval);
+    try {
+        validateData(from, to, interval);
 
-    let counter = 1;
-
-    for(let i = from; i <= to; i++) {
-        setTimeout( () => {
-            console.log('item :>> ', i);
-        }, interval * counter++);
+        let counter = 1;
+    
+        for(let i = from; i <= to; i++) {
+            setTimeout( () => {
+                console.log('item :>> ', i);
+            }, interval * counter++);
+        };
+    } catch (error) {
+        if (error instanceof TypeError) {
+            alert('It is not a number!');
+        };
+        if (error instanceof RangeError) {
+            alert('False range for parameters!');
+        };
     };
 };
 
@@ -44,32 +53,39 @@ function printNumbers1(from, to, interval) {
  */
 function printNumbers2(from, to, interval) {
 
-    validateData(from, to, interval);
+    try {
+        validateData(from, to, interval);
     
-    let item = from;
-
-    /**
-     * 
-     * @param {function} timerName 
-     *
-     */
-    const show = timerName => {
-        console.log('item :>> ', item);
-      
-        if (item === to) {
-            clearInterval(timerName);
+        let item = from;
+    
+        /**
+         * @param {function} timerName 
+         */
+        const show = timerName => {
+            console.log('item :>> ', item);
+          
+            if (item === to) {
+                clearInterval(timerName);
+            };
+                
+            item++;
         };
-            
-        item++;
+    
+        const timerId = setInterval( () => show(timerId), interval );
+    } catch (error) {
+        if (error instanceof TypeError) {
+            alert('It is not a number!');
+        };
+        if (error instanceof RangeError) {
+            alert('False range for parameters!');
+        };
     };
-
-    const timerId = setInterval( () => show(timerId), interval );
 };
 
 
 // 3
 
-printNumbers3(1, 7, 200);
+// printNumbers3(1, 5, 200);
 
 /**
  * 
@@ -79,22 +95,31 @@ printNumbers3(1, 7, 200);
  */
 function printNumbers3(from, to, interval) {
 
-    validateData(from, to, interval);
+    try {
+        validateData(from, to, interval);
   
-    const show = () => {
-        let item = from;
-
-        return function run() {
-            console.log('item >>> ', item);
+        const show = () => {
+            let item = from;
     
-            if (item < to) {
-                setTimeout(run, interval);
+            return function run() {
+                console.log('item >>> ', item);
+        
+                if (item < to) {
+                    setTimeout(run, interval);
+                };
+                item++;
             };
-            item++;
+        };
+    
+        setTimeout( () => show()(), interval );
+    } catch (error) {
+        if (error instanceof TypeError) {
+            alert('It is not a number!');
+        };
+        if (error instanceof RangeError) {
+            alert('False range for parameters!');
         };
     };
-
-    setTimeout( () => show()(), interval );
 };
 
 
